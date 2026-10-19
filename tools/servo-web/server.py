@@ -296,7 +296,7 @@ def bus_trace(line):
 
 def open_bus(port, baud=None):
     """打开串口并接管总线。失败不抛异常，返回 {ok, msg}，页面照样能用（假总线）。"""
-    global BUS, PORT, BAUD, PRESENT
+    global BUS, PORT, BAUD, PRESENT, OFFSET_SIGN
     baud = baud or BAUD
     try:
         bus = feetech.FeetechBus(port, baud)
@@ -308,6 +308,7 @@ def open_bus(port, baud=None):
     bus.trace = bus_trace
     old = BUS
     BUS, PORT, BAUD = bus, port, baud
+    OFFSET_SIGN = None       # 换了总线（可能从假变真），偏移方向重新探，别用旧总线的结论
     if old is not None and not isinstance(old, FakeBus):
         try:
             old.close()
@@ -322,8 +323,9 @@ def open_bus(port, baud=None):
 
 def fallback_fake(why):
     """没有串口时退到假总线：页面照开，能看界面、看 3D，就是不动真舵机。"""
-    global BUS, PORT, PRESENT
+    global BUS, PORT, PRESENT, OFFSET_SIGN
     BUS, PORT = FakeBus(IDS), None
+    OFFSET_SIGN = None
     PRESENT = list(IDS)
     if imu_backend(IMU_SERVICE) == "bus":   # 启动参数 --imu-bus 但没串口：假总线上挂一块虚拟小板答 ID 200
         import imu_bus
@@ -545,6 +547,8 @@ def probe_offset_sign(i):
     global OFFSET_SIGN
     if OFFSET_SIGN is not None:
         return OFFSET_SIGN
+    if is_fake():
+        return None                     # 假总线写死「读数 = 原始 + 偏移」，结论不能当真机的
     try:
         o0, r0 = read_off(i), read_pos(i)
         if abs(o0 + 1) > OFFSET_LIMIT:
@@ -860,7 +864,7 @@ def _undo_calibration():
     fn = files[-1]
     with open(os.path.join(d, fn), encoding="utf-8") as f:
         rec = json.load(f)
-    log(f"开始撤销：把 calib/{fn}（{rec.get('time', '?')}）里的偏移写回去", "校准")
+    log(f"开始撤销：把 {'临时目录（模拟）' if rec.get('sim') else 'calib/'}{fn}（{rec.get('time', '?')}）里的偏移写回去", "校准")
     ok, bad = [], {}
     for k, row in rec["servos"].items():
         i = int(k)
