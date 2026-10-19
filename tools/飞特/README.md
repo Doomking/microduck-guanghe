@@ -35,4 +35,4 @@ CH340_URT.rar          546aaf96a54647f7a3ddd7e21389d64be2d198926c6058d8b19ee90e9
 
 ## 网页调试台
 
-FD 只能在 Windows 上跑。装到板子上或者想看 3D 模型跟着动，用 [`../servo-web/`](../servo-web/)：`python server.py --port COM5`，浏览器打开就能拖，还能一键导出 0–90 全部寄存器。
+FD 只能在 Windows 上跑 —— **用 Mac 的话看 [`../servo-web/macOS 校准与编号.md`](../servo-web/macOS%20校准与编号.md)**（同一个网页调试台，编号 + 一键校准都在里面）。装到板子上或者想看 3D 模型跟着动，用 [`../servo-web/`](../servo-web/)：`python server.py --port COM5`，浏览器打开就能拖，还能一键导出 0–90 全部寄存器。

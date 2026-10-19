@@ -32,10 +32,13 @@
 ```bash
 pip install -r requirements.txt
 python server.py --port COM5                 # Windows + URT-2，串口号看设备管理器
+python server.py --port /dev/cu.usbmodem1101 # macOS + URT-2，串口号看 /dev/cu.*（见下）
 python server.py --port /dev/ttyUSB0         # 板子上，URT-2 插板子的 USB 口
 python server.py --port /dev/ttyS2           # 板子上走 40 脚的 UART2（要先接半双工转接，见下）
 python server.py --fake                      # 没舵机：模拟模式，舵机是虚拟的
 ```
+
+**macOS**：FD 只有 Windows 版，Mac 上用这个调试台做编号、开保护和校准就行。URT-2 是 CH343，**macOS 不一定免驱** —— 插上先 `ls /dev/cu.*`，出来 `cu.usbmodem*` 或 `cu.wchusbserial*` 就能用，什么都没有要装 WCH 驱动。完整流程（驱动、装依赖、单颗改 ID、一键校准、体检、排错）见 [`macOS 校准与编号.md`](macOS%20校准与编号.md)。
 
 **模拟模式**（没接串口时）：虚拟舵机按真舵机的速度、加速度寄存器走梯形曲线，姿势、滑块、序列、灵动、官方姿势都会在 3D 里动，快慢跟真机一样；扭矩默认开，没有重力。右上「模拟」一栏能选 IMU：不接 / 接虚拟小板（假总线上的 ID 200，跟 `--imu-bus` 同一条路）/ 虚拟小板掉线（看调试台怎么把 200 出列、单独 PING、再接回来）。插上 USB 在顶栏选串口点「连接」就切到真舵机，这一栏自动藏起来，虚拟小板也跟着拔掉。
 
