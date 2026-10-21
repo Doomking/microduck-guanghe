@@ -131,6 +131,11 @@ class FeetechBus:
         if len(body) < length:
             self.stats["timeout"] += 1
             raise BusTimeout(f"{who} 应答不完整：长度 {length} 只收到 {len(body)}（ff ff {hexs(rest + body)}）")
+        if length < 2:
+            # 长度字段连 err + 校验和都放不下：那是找错帧头（总线回声、串扰）以后的残帧。
+            # 不算校验错会露出 body[0] 越界，把整轮 sync_read 打断，所以在这里按坏帧丢掉。
+            self.stats["bad_checksum"] += 1
+            raise BusError(f"{who} 帧长度字段 {length} 不合理（ff ff {hexs(rest + body)}）")
         err, params, chk = body[0], body[1:-1], body[-1]
         if ((~(sid + length + err + sum(params))) & 0xFF) != chk:
             self.stats["bad_checksum"] += 1

@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 import mujoco
@@ -36,38 +37,105 @@ assert MICRODUCK_WALK_BACKLASH_XML.exists(), f"XML not found: {MICRODUCK_WALK_BA
 assert MICRODUCK_ALLCOLLISIONS_ROLLERS_BACKLASH_XML.exists(), f"XML not found: {MICRODUCK_ALLCOLLISIONS_ROLLERS_BACKLASH_XML}"
 
 
+# ---------------------------------------------------------------------------
+# Real-machine mass calibration (M2 placeholder — bench data not in yet)
+# ---------------------------------------------------------------------------
+# The Onshape export carries the upstream XL330 assembly's inertials: 737.2 g
+# over 15 bodies. Our machine weighs ~850 g (HD-1910 is 3 g heavier per servo,
+# +45 g over 15; the rest is battery / mounting / wiring differences).
+#
+# Until M1 bench weighing gives PER-BODY masses (docs/HD-1910训练前数据清单.md
+# §2), set MICRODUCK_TOTAL_MASS_KG to rescale the model so gravity, contact
+# forces and actuator loading see the real total. The scale is applied
+# uniformly to mass AND inertia (uniform-density assumption), so the mass
+# distribution *shape* is unchanged — a first-order correction, NOT a
+# substitute for the per-link M2 alignment.
+#
+#   MICRODUCK_TOTAL_MASS_KG=0.850 uv run --frozen train \
+#       Mjlab-Velocity-Flat-MicroDuck-HD1910 --env.scene.num-envs 64 ...
+#
+# Unset (default) reproduces upstream bit-for-bit. The ball prop is a separate
+# entity and is deliberately NOT rescaled.
+MASS_CALIBRATION_ENV_VAR = "MICRODUCK_TOTAL_MASS_KG"
+
+_MASS_CALIBRATION_REPORTED: float | None = None
+
+
+def total_mass_kg() -> float | None:
+    """Target total robot mass from the environment, or None when unset."""
+    raw = os.environ.get(MASS_CALIBRATION_ENV_VAR, "").strip()
+    if not raw:
+        return None
+    try:
+        value = float(raw)
+    except ValueError as exc:
+        raise ValueError(f"{MASS_CALIBRATION_ENV_VAR}={raw!r} is not a number") from exc
+    if value <= 0.0:
+        raise ValueError(f"{MASS_CALIBRATION_ENV_VAR}={raw!r} must be positive (kg)")
+    return value
+
+
+def _scale_total_mass(spec: mujoco.MjSpec, target_kg: float) -> None:
+    """Uniformly rescale every body's mass + inertia to hit target_kg."""
+    current_kg = sum(body.mass for body in spec.bodies)
+    if current_kg <= 0.0:
+        raise ValueError("spec has no body mass to scale")
+    scale = target_kg / current_kg
+    for body in spec.bodies:
+        body.mass = body.mass * scale
+        body.fullinertia = [moment * scale for moment in body.fullinertia]
+    global _MASS_CALIBRATION_REPORTED
+    if _MASS_CALIBRATION_REPORTED != target_kg:
+        print(
+            f"[microduck] mass calibration: {current_kg * 1000:.1f} g -> "
+            f"{target_kg * 1000:.1f} g (x{scale:.4f})",
+            file=sys.stderr,
+        )
+        _MASS_CALIBRATION_REPORTED = target_kg
+
+
+def _robot_spec(path: Path) -> mujoco.MjSpec:
+    """Load a robot MJCF and apply the optional total-mass calibration."""
+    spec = mujoco.MjSpec.from_file(str(path))
+    target = total_mass_kg()
+    if target is not None:
+        _scale_total_mass(spec, target)
+    return spec
+
+
 def get_walk_spec() -> mujoco.MjSpec:
-    return mujoco.MjSpec.from_file(str(MICRODUCK_WALK_XML))
+    return _robot_spec(MICRODUCK_WALK_XML)
 
 
 def get_standup_spec() -> mujoco.MjSpec:
-    return mujoco.MjSpec.from_file(str(MICRODUCK_ALLCOLLISIONS_XML))
+    return _robot_spec(MICRODUCK_ALLCOLLISIONS_XML)
 
 
 def get_ground_pick_spec() -> mujoco.MjSpec:
-    return mujoco.MjSpec.from_file(str(MICRODUCK_ALLCOLLISIONS_XML))
+    return _robot_spec(MICRODUCK_ALLCOLLISIONS_XML)
 
 
 def get_walk_rollers_spec() -> mujoco.MjSpec:
     # NOTE: was loading robot_allcollisions.xml (no wheels) — the roller env
     # silently ran on the wheel-less standup model.
-    return mujoco.MjSpec.from_file(str(MICRODUCK_ALLCOLLISIONS_ROLLERS_XML))
+    return _robot_spec(MICRODUCK_ALLCOLLISIONS_ROLLERS_XML)
 
 
 def get_ball_spec() -> mujoco.MjSpec:
+    # Prop, not the robot: never rescaled by the mass calibration.
     return mujoco.MjSpec.from_file(str(MICRODUCK_BALL_XML))
 
 
 def get_backlash_spec() -> mujoco.MjSpec:
-    return mujoco.MjSpec.from_file(str(MICRODUCK_ALLCOLLISIONS_BACKLASH_XML))
+    return _robot_spec(MICRODUCK_ALLCOLLISIONS_BACKLASH_XML)
 
 
 def get_walk_backlash_spec() -> mujoco.MjSpec:
-    return mujoco.MjSpec.from_file(str(MICRODUCK_WALK_BACKLASH_XML))
+    return _robot_spec(MICRODUCK_WALK_BACKLASH_XML)
 
 
 def get_rollers_backlash_spec() -> mujoco.MjSpec:
-    return mujoco.MjSpec.from_file(str(MICRODUCK_ALLCOLLISIONS_ROLLERS_BACKLASH_XML))
+    return _robot_spec(MICRODUCK_ALLCOLLISIONS_ROLLERS_BACKLASH_XML)
 
 
 HOME_FRAME = EntityCfg.InitialStateCfg(
