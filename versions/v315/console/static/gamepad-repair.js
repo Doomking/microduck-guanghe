@@ -11,7 +11,7 @@ export class GamepadRepair {
     this.root=document.createElement('section');this.root.className='gamepad-repair';this.root.hidden=true;
     this.root.setAttribute('aria-label','GameSir 手柄连接修复');
     this.root.innerHTML=`<div class="gamepad-repair-heading"><strong>手柄连接 / 修复</strong><button type="button" class="text-button" id="gamepad-repair-close">收起</button></div>
-      <p>打开 Nova 2 Lite，保持 <b>A+HOME</b> 模式，松开摇杆和按键。正常连接保留原配对，按层恢复缺失的输入服务；已连接时直接返回。</p>
+      <p>打开手柄（Nova 2 Lite／Nova Lite），保持 <b>A+HOME</b> 模式，松开摇杆和按键。正常连接保留原配对，按层恢复缺失的输入服务；已连接时直接返回。</p>
       <div class="gamepad-repair-fields"><label>手柄 MAC（可留空自动识别）<input id="gamepad-repair-address" type="text" maxlength="17" placeholder="例如 53:81:7F:20:AE:AB" autocomplete="off" spellcheck="false"></label>
       <label class="service-check"><input id="gamepad-repair-supported" type="checkbox">首次／重新配对：手柄已进入配对模式，机身有支撑；允许卸力，并删除所选手柄已有的配对</label></div>
       <p class="tiny muted">仅首次／重新配对会暂停实体输入并卸力。慢闪时按住 HOME+截图键 2–3 秒进入配对；手机连接服务只恢复原状态。</p>

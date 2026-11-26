@@ -38,4 +38,15 @@
 - 两代共用 control.127 固件包（`Microduck-Robotd-FT6-R17.tar.gz`，sha256 `42cd56d5…`）与同一份原生源码归档（sha256 `b3818b78…`）；V315 相对 V313 仅中控更新。
 - 手柄桥 C 源码不在原生源码归档里，而在固件包内 `gamepad-r7/gamesir-xboxd.c`；P4 移植以该文件为基线，对照本仓库 `microduck-hd1910/firmware/gamepad-r7/gamesir-xboxd.c`（已打补丁的 43 代）。
 - V297/V302 为过渡 Beta（固件复用 control.102，源码已在 git `versions/v260`），未导入，按上游 README 从 Release ZIP 获取。
-- 导入内容为上游官方原版，未含手柄补丁；main 工作树（control.43 + 补丁）不受影响。
+- `versions/v313/` 保持上游原版参考；`versions/v315/` 已完成 P4 手柄补丁移植（见下节）。main 工作树（control.43 + 补丁）不受影响。
+
+## P4：V315 / control.127 手柄补丁移植（2026-11-26）
+
+在 `versions/v315/` 上把 43 fork 的 Nova Lite 补丁移植到官方 control.127 基线，**构建标识不变（control.127 / 中控 1.0.315）**：
+
+1. 桥 C 源码：以包内官方 V238 源码为基线，套用同一 6 行名称匹配补丁（`versions/v315/patches/nova-lite.patch`）。**B 键跟随官方 127 保持未分配**；官方 `test_b_unmapped` 实机 PASS。
+2. udev 规则 +1 行（与 43 逐字节相同）；`console/gamepad_repair.py` 与 43 补丁版逐字节相同；`static/gamepad-repair.js` 改 1 行文案。
+3. 重打 `versions/v315/console/updates/Microduck-Robotd-FT6-R17.tar.gz`：188 成员中替换 6 个，其余 182 个逐字节不变；同步 `SHA256SUMS`、`BUILD.json`、`ELF-CHECK.json`、`console/BUILD_MANIFEST.json`。
+   - 新包 sha256 `c26c1f80…`（30,110,809 B）；新桥二进制 sha256 `f7d7d101…`（71,872 B，gcc 12.2 实机原生编译，**glibc ≥ 2.34**）。
+   - `hardware_verified: false`：尚未刷入实机；当前鸭子仍运行 control.43 + 补丁，升级到 127 是独立决定。
+4. 详细记录见 `versions/v315/IMPORT-NOTES.md` 文末 P4 节。

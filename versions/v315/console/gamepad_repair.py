@@ -13,6 +13,8 @@ import sys
 import time
 
 NAME = 'GameSir-Nova 2 Lite'
+NAMES = (NAME, 'GameSir-Nova Lite')
+NAME_RE = '(?:' + '|'.join(re.escape(n) for n in NAMES) + ')'
 VIRTUAL = 'Xbox 360 Controller (GameSir Nova 2 Lite)'
 HID = '00001124-0000-1000-8000-00805f9b34fb'
 MAC = r'(?:[0-9A-F]{2}:){5}[0-9A-F]{2}'
@@ -57,8 +59,7 @@ def property_value(text, name):
 
 
 def devices(text):
-    return {
-        address: NAME for address in re.findall(r'^Device (' + MAC + r') ' + re.escape(NAME) + r'\s*$', text, re.M)}
+    return dict(re.findall(r'^Device (' + MAC + r') (' + NAME_RE + r')\s*$', text, re.M))
 
 
 def loaded(unit):
@@ -143,7 +144,7 @@ class BluetoothSession:
                 text = ''
             if 'Enter PIN code' in text or 'Enter passkey' in text or 'Confirm passkey' in text:
                 raise RepairError('手柄请求了 PIN/密码确认。请核对 A+HOME 模式后重新修复。')
-            if re.search(r'Failed|not available|No default controller|Invalid command|AuthenticationCanceled', text):
+            if re.search(r'Failed|not available|No default controller|Invalid command|AuthenticationCanceled|Too many arguments', text):
                 raise RepairError(f'{command}：{text.strip()[-900:]}')
         raise RepairError(f'{command} 等待回执超时：{text.strip()[-500:]}')
 
@@ -174,7 +175,7 @@ def connect_hid(session, address):
     # Connected: yes alone must never skip this explicit profile connection.
     emit('bluetooth', '使用已完成的配对连接 HID 输入通道一次。', 'waiting')
     try:
-        session.command('connect ' + address + ' ' + HID,
+        session.command('connect ' + address,
                         ['Connection successful', 'org.bluez.Error.AlreadyConnected'], timeout=20)
     except (RepairError, subprocess.TimeoutExpired) as exc:
         raise RepairError('HID 输入连接失败：' + str(exc) + '；目标配对已保留，未重启 robotd。',
@@ -208,7 +209,7 @@ def pair_device(session, address):
     session.command('agent off', ['Agent unregistered', 'No agent is registered'])
     session.command('agent NoInputNoOutput', ['Agent registered', 'Agent is already registered'])
     session.command('pairable on', ['Changing pairable on succeeded'])
-    emit('scanning', '等待处于配对模式的 Nova 2 Lite；最多扫描 15 秒。', 'waiting')
+    emit('scanning', '等待处于配对模式的 GameSir 手柄（Nova 2 Lite／Nova Lite）；最多扫描 15 秒。', 'waiting')
     try:
         session.command('scan on', ['Discovery started'])
     except RepairError as exc:
@@ -219,8 +220,8 @@ def pair_device(session, address):
     text = ''
     while time.monotonic() < end:
         text = (text + session.read(max(0, end - time.monotonic())))[-32768:]
-        fresh.update(re.findall(r'(?:\[NEW\] )?Device (' + MAC + r') ' + re.escape(NAME) + r'\s*(?:\n|$)', text))
-        fresh.update(re.findall(r'\[CHG\] Device (' + MAC + r') Name: ' + re.escape(NAME) + r'\s*(?:\n|$)', text))
+        fresh.update(re.findall(r'(?:\[NEW\] )?Device (' + MAC + r') ' + NAME_RE + r'\s*(?:\n|$)', text))
+        fresh.update(re.findall(r'\[CHG\] Device (' + MAC + r') Name: ' + NAME_RE + r'\s*(?:\n|$)', text))
         if address in fresh or not address and fresh:
             break
     # Devices may be emitted across read chunks; after a reset/removal the cache also contains newly found names.
@@ -231,9 +232,9 @@ def pair_device(session, address):
     elif len(found) == 1:
         address = next(iter(found))
     elif len(found) > 1:
-        raise RepairError('发现多只 Nova 2 Lite，请在修复面板填写目标 MAC：' + '、'.join(sorted(found)), 'choose_device')
+        raise RepairError('发现多只 GameSir 手柄，请在修复面板填写目标 MAC：' + '、'.join(sorted(found)), 'choose_device')
     else:
-        raise RepairError('未发现 GameSir-Nova 2 Lite。手柄需进入 A+HOME 模式；慢闪时按住 HOME+截图键 2–3 秒。', 'not_found')
+        raise RepairError('未发现 GameSir 手柄（Nova 2 Lite／Nova Lite）。手柄需进入 A+HOME 模式；慢闪时按住 HOME+截图键 2–3 秒。', 'not_found')
     emit('scanning', '已发现目标手柄 ' + address + '。')
     session.command('scan off', ['Discovery stopped'])
     emit('pairing', '正在配对 ' + address + '。', 'waiting')
@@ -271,7 +272,7 @@ def bridge_state():
                         pass
             except (FileNotFoundError, ProcessLookupError):
                 pass  # A service can change process while this one-off read runs.
-    return {'physical': ('Name="' + NAME + '"') in text,
+    return {'physical': any('Name="' + n + '"' in text for n in NAMES),
             'virtual': bool(nodes), 'bridge_active': bridge_active, 'padd_active': padd_active,
             'padd_open': padd_open, 'padd_waiting': padd_waiting, 'bridge_waiting': bridge_waiting}
 
@@ -420,8 +421,8 @@ def _repair(address, operation):
         if address:
             text = info(address)
             name = property_value(text, 'Name')
-            if name != NAME and (name is not None or property_value(text, 'Paired') == 'yes'):
-                raise RepairError('所选设备不是 A+HOME 模式的 GameSir-Nova 2 Lite，未删除其配对。', 'wrong_device')
+            if name not in NAMES and (name is not None or property_value(text, 'Paired') == 'yes'):
+                raise RepairError('所选设备不是 A+HOME 模式的 GameSir 手柄（Nova 2 Lite／Nova Lite），未删除其配对。', 'wrong_device')
         emit('checking', '已确认目标手柄与已安装输入服务；' + (address or '尚无已记录手柄') + '。')
         session = None
         paused, phone_paused = False, False
@@ -454,7 +455,7 @@ def _repair(address, operation):
                     run('systemctl', 'start', 'bluetooth.service', timeout=15)
                 session = BluetoothSession()
                 session.command('power on', ['Changing power on succeeded'])
-                if address and property_value(info(address), 'Name') == NAME:
+                if address and property_value(info(address), 'Name') in NAMES:
                     session.command('remove ' + address, ['Device has been removed'])
                     emit('forget', '已按所选配对操作，仅删除 ' + address + ' 的旧记录／配对，包括未完成的配对记录。')
                 reset_adapter(session)

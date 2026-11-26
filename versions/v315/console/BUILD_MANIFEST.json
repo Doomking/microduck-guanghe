@@ -187,7 +187,7 @@
   "generated_at_utc": "2026-11-25T15:17:00.027240+00:00",
   "hardware_verified": false,
   "firmware_reinstall_required": false,
-  "service_package_sha256": "42cd56d5bfcabcceb581729437bb16289e8b3efdd9f16552b14a3adc2f7455fb",
+  "service_package_sha256": "c26c1f80516ffe59d0549ea5ed6ce0850482118b1696664b95cc15e6f1debdca",
   "maintenance_component_id": "da3e93589ff81402e617fbd49936f7a0ede6c06cb5d481370eee182fb7b71c2c",
   "package_baseline": "V314 / control.127",
   "console_source_distribution": "Microduck-Console-Studio-V315.zip",
@@ -922,7 +922,7 @@
     "docs/UPDATE-V315.zh-CN.md": "47a9a42d197da2a3916beb5cda557eb63789b8eef8903f7e2d3b5b6a041d3a0d",
     "docs/joint-scale-design148.md": "af4e81c5ad4772e22c9a1321e1ad2b9d3d1c033e25fc8cc25c3ede140868a474",
     "firmware_packages.py": "91d03901c0bf900e9d9927f351cb80c584bd49d1bab2d11a119b206281d51a56",
-    "gamepad_repair.py": "1624a5870086d2c859e75402b19921c3056f3418cea288fe76ca30488290792d",
+    "gamepad_repair.py": "c94c3b245515c018334c921749ff63e80b11200b15760c45b61b8f2b1f0e86df",
     "hotspot_control.py": "3677eeecf0606c31eae8e5b7d81741dfdb41a034b8b480c5c43c82a3b4771bae",
     "input_channel.py": "9ede66730f610bfa0d8c3e669dd847ed944605f2b13e63e63d99b16d865375d2",
     "install_handoff.py": "7ef8504124e16e80424caf2720567e15052217dc54fbbc650b7f78c54a9ae0c4",
@@ -1007,7 +1007,7 @@
     "static/firmware.js": "42da1549d6b82476f4445e686143d935a51df62d26e681d0a6ff924db45be2e7",
     "static/four-pages.css": "6df41cd9c6c40b55c1110986b912b6dbd33a857361a5b5ff83c608ae8c4bf5d5",
     "static/four-pages.js": "1e43127e48af2c5ada0c7b74d7cc8995f767f4684e751bf2f4796b6f9d910e7b",
-    "static/gamepad-repair.js": "7b49ba75dd1e4ceee25c47d623da28bca8a48a41df7627f93ebcbf138f78c265",
+    "static/gamepad-repair.js": "f1d7650e8c65874a3c503fa1dbdfa793275cef5425f2665f9d45f426173b2ffc",
     "static/history-frame.js": "f018df0aacc8e3b6c06f4383cc778cc7d69eef3619fa150c933c718d6b7af403",
     "static/index.html": "66e71b5f08ed5b6d4e434d3078645184249bbdf84eca479d67e6cbfa5bab0b99",
     "static/inspection.js": "9f5e90a0f007e1431c38f7fa92bcac54277971d387ecd8aacf2b38c1330379be",
@@ -1044,7 +1044,7 @@
     "system_log.py": "dd96afec02bb16f5ded5d99d9c9bdfbf841a2bd6dc0f8a409cc807b7898153bb",
     "telemetry.py": "a570da9e37c346bbdc9aca763be130ce4a71e72e74f83aead7d4134a570dec89",
     "updates/Microduck-Maintenance-V315.tar.gz": "4ebf425e5343bddf4db478553bcef2439aca2e34702f139a13d2bc92e9367698",
-    "updates/Microduck-Robotd-FT6-R17.tar.gz": "42cd56d5bfcabcceb581729437bb16289e8b3efdd9f16552b14a3adc2f7455fb",
+    "updates/Microduck-Robotd-FT6-R17.tar.gz": "c26c1f80516ffe59d0549ea5ed6ce0850482118b1696664b95cc15e6f1debdca",
     "updates/imu_to_feetech_ReVA_FT6_SYNC15_UART_IRQ_v1.bin": "d7bd2f37a6a4e0e15d1f9650a3959bcf4d8c704524d8ec319d72d8bdf104ab6d",
     "verification/redo302/model-check.py": "159cb62e55f5933b2ed38b8f9d70d308a429e0583d9386c09423bba659efe33c",
     "verification/redo302/native-ipc-results.json": "010f0bce1ccfdb6e61a94fb678cecc435923089629646b8dd27264119835d2ec",
@@ -1094,5 +1094,6 @@
   "maintenance_component_auto_prepare": true,
   "firmware_payload_changed": false,
   "maintenance_package_sha256": "4ebf425e5343bddf4db478553bcef2439aca2e34702f139a13d2bc92e9367698",
-  "baseline_zip_sha256": "1126189ad93f7e96653238a7880f677a3ba3a522d430c964c5ea62450bdde706"
+  "baseline_zip_sha256": "1126189ad93f7e96653238a7880f677a3ba3a522d430c964c5ea62450bdde706",
+  "fork_note": "Personal fork: gamepad bridge rebuilt for GameSir Nova Lite; control.127 bundle repacked. See NOTICE.md."
 }

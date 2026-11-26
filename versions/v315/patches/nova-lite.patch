@@ -1,0 +1,23 @@
+--- a/gamesir-xboxd.c
++++ b/gamesir-xboxd.c
+@@ -19,7 +19,9 @@
+ #include <unistd.h>
+ 
+ #define PAD_NAME "GameSir-Nova 2 Lite"
++#define PAD_NAME_LITE "GameSir-Nova Lite"
+ #define CONSUMER_NAME "GameSir-Nova 2 Lite Consumer Control"
++#define CONSUMER_NAME_LITE "GameSir-Nova Lite Consumer Control"
+ #define XBOX_NAME "Xbox 360 Controller (GameSir Nova 2 Lite)"
+ #define NBITS(x) ((((x) - 1) / (8 * sizeof(unsigned long))) + 1)
+ 
+@@ -62,7 +64,9 @@
+         if (fd < 0)
+             continue;
+         if (ioctl(fd, EVIOCGNAME(sizeof(name)), name) >= 0 &&
+-            strcmp(name, wanted) == 0 &&
++            (strcmp(name, wanted) == 0 ||
++             (strcmp(wanted, PAD_NAME) == 0 && strcmp(name, PAD_NAME_LITE) == 0) ||
++             (strcmp(wanted, CONSUMER_NAME) == 0 && strcmp(name, CONSUMER_NAME_LITE) == 0)) &&
+             (!require_axes || (has_abs(fd, ABS_X) && has_abs(fd, ABS_Y)))) {
+             snprintf(path, path_len, "%s", candidate);
+             return fd;
