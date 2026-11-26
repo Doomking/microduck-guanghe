@@ -16,7 +16,7 @@
 1. `gamepad-r7/gamesir-xboxd.c` 与 udev 规则：支持 GameSir Nova Lite（HID `3537:1041`，A+HOME 模式），将其物理输入从游戏客户端隐藏，桥接为标准 Xbox 360 手柄。
 2. `console/gamepad_repair.py`、`console/static/gamepad-repair.js`：扫描/配对同时识别 Nova 2 Lite 与 Nova Lite；HID 连接改为 `connect <MAC>`（不再附带 HID UUID 参数，bluetoothctl 5.66 会拒绝并报 `Too many arguments`）。
 3. 重打 `console/updates/Microduck-Robotd-FT6-R17.tar.gz`：替换 `gamepad-r7/gamesir-xboxd` 为已在实机验证的新二进制（Radxa Zero 3W / Debian 12 / gcc 12.2 原生编译），并同步更新 `SHA256SUMS`、`BUILD.json`、`ELF-CHECK.json`、`console/BUILD_MANIFEST.json`。
-   - 注意：新桥接二进制要求 **glibc ≥ 2.34（Debian 12 及以上）**；上游旧二进制仅要求 2.17。其余 160 个包内文件与上游逐字节一致。
+   - 注意：新桥接二进制要求 **glibc ≥ 2.34（Debian 12 及以上）**；上游旧二进制仅要求 2.17。其余 156 个包内文件与上游逐字节一致。
 
 ## replica/ 子树
 
