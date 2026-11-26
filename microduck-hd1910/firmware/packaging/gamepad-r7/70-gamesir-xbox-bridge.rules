@@ -1,3 +1,4 @@
 # Hide the physical Android-HID pad from game clients. gamesir-xboxd reads it directly
 # and publishes one standard Microsoft Xbox 360 controller through uinput.
 SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="GameSir-Nova 2 Lite*", ENV{ID_INPUT_JOYSTICK}="0"
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="GameSir-Nova Lite*", ENV{ID_INPUT_JOYSTICK}="0"

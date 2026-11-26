@@ -4,7 +4,7 @@
   "service_build": "1fa8438-feetech-ft6-control.43",
   "hardware_verified": false,
   "hardware_base": "R17 v1.0.95",
-  "service_package_sha256": "bcfd5c183c697b9c4e0fdbd563d995eda6a48331a7c49b9e76d20bd156c65cce",
+  "service_package_sha256": "7933d9d093547fa5ebc8134686356ed8e64b9634fff88348e94d9c21787b953a",
   "source_distribution": "Microduck-Source-R17-V167-control43-compiled.tar.gz",
   "models": {
     "walk": {
@@ -204,8 +204,8 @@
     },
     {
       "path": "gamepad_repair.py",
-      "bytes": 27129,
-      "sha256": "1624a5870086d2c859e75402b19921c3056f3418cea288fe76ca30488290792d"
+      "bytes": 27282,
+      "sha256": "c94c3b245515c018334c921749ff63e80b11200b15760c45b61b8f2b1f0e86df"
     },
     {
       "path": "input_channel.py",
@@ -434,8 +434,8 @@
     },
     {
       "path": "static/gamepad-repair.js",
-      "bytes": 6192,
-      "sha256": "dce8b1266d929fe0257a3dbbe495f36921a38d6314c3950c0ae5832036437037"
+      "bytes": 6215,
+      "sha256": "c6d06f2ee5705fdd05d72aa3498d254113ac69d13d9c40238848126c83ab8f33"
     },
     {
       "path": "static/history-frame.js",
@@ -579,8 +579,8 @@
     },
     {
       "path": "updates/Microduck-Robotd-FT6-R17.tar.gz",
-      "bytes": 34138802,
-      "sha256": "bcfd5c183c697b9c4e0fdbd563d995eda6a48331a7c49b9e76d20bd156c65cce"
+      "bytes": 34132320,
+      "sha256": "7933d9d093547fa5ebc8134686356ed8e64b9634fff88348e94d9c21787b953a"
     },
     {
       "path": "updates/imu_to_feetech_ReVA_FT6_SYNC15_UART_IRQ_v1.bin",
@@ -1220,5 +1220,6 @@
     "fixed_settings_readback_added": false,
     "eeprom_changed": false
   },
-  "repository_documentation_adjusted": true
+  "repository_documentation_adjusted": true,
+  "fork_note": "Personal fork: gamepad bridge rebuilt for GameSir Nova Lite; control.43 bundle repacked. See NOTICE.md."
 }

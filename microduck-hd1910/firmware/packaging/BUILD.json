@@ -277,7 +277,8 @@
     }
   },
   "rebuilt_binaries": [
-    "robotd"
+    "robotd",
+    "gamepad-r7/gamesir-xboxd"
   ],
   "reused_binaries": [
     "gamepad-r7/gamesir-xboxd",
@@ -342,7 +343,7 @@
     "robotd/src/feetech_commissioning.rs: build identity"
   ],
   "padd_source_sha256": "42e334cf44adba39cff19e3afd6b089116cb6e9b5428a12f513bd9c79e4a28ff",
-  "gamepad_binary_sha256": "6f8d78d2bdcb85c2e216013c66e1af25b38813cb86d0e88a7722ef98df5d4b30",
+  "gamepad_binary_sha256": "3775c0bd1bf76337e38a61a1734f35c16f02efa7f33decb8575efe0a0e40b588",
   "tests": {
     "robot_hardware_tested": false,
     "windows_native_tested": false,
@@ -420,8 +421,7 @@
     "padd",
     "robotctl",
     "mediad",
-    "sounds",
-    "gamepad-r7/gamesir-xboxd"
+    "sounds"
   ],
   "hd1910_runtime_settings": {
     "p": {
@@ -445,5 +445,11 @@
     "write_trigger": "V164 explicit arm flow",
     "fixed_settings_readback_added": false,
     "eeprom_changed": false
+  },
+  "fork_gamepad_rebuild": {
+    "summary": "GameSir Nova Lite (HID 3537:1041) support in gamesir-xboxd and udev rules; console repair connects without HID UUID argument (bluetoothctl 5.66)",
+    "binary_source": "gamepad-r7/gamesir-xboxd.c, native gcc 12.2.0 on Radxa Zero 3W (Debian 12, glibc 2.36)",
+    "glibc_floor": "2.34",
+    "hardware_verified": true
   }
 }

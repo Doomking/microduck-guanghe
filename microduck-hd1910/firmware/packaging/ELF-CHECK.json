@@ -79,16 +79,16 @@
     "bytes": 1152920
   },
   "gamepad-r7/gamesir-xboxd": {
-    "sha256": "6f8d78d2bdcb85c2e216013c66e1af25b38813cb86d0e88a7722ef98df5d4b30",
+    "sha256": "3775c0bd1bf76337e38a61a1734f35c16f02efa7f33decb8575efe0a0e40b588",
     "machine": "AArch64",
     "needed": [
-      "libpthread.so.0",
       "libc.so.6"
     ],
     "glibc_versions": [
-      "2.17"
+      "2.17",
+      "2.34"
     ],
-    "bytes": 43664
+    "bytes": 71816
   },
   "onnxruntime/libonnxruntime.so.1.28.0": {
     "sha256": "f1ec1a08eb99bd6e5401340f0a2b101381bf4694415480291dc13bcaa30f9ec7",
