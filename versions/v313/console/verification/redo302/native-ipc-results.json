@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "real_console_backend_and_native_rpc_handler": true,
+  "direct_rpc_matches_raw_order": true,
+  "actual_uart_request_tail_changed": true,
+  "servo_register_writes_unchanged": true,
+  "strict_stale_revision_rejected": true,
+  "restart_restores_first_uart_request": true,
+  "second_reorder_replaces_saved_order": true,
+  "pure_readonly_remains_blocked": true,
+  "physical_hardware_tested": false
+}

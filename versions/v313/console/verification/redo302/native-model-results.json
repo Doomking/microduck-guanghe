@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "count": 11,
+  "runtime": "actual ARM64 robotd + bundled ORT through QEMU; no hardware",
+  "models": [
+    {
+      "model": "models/1c94934c6421ec72ed48079cea749668/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "models/1cbf8730eadd75a5704332c9f3c10f60/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "models/59e15d7b04d0c40e9b11b8a70bdecae6/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "models/67ad09d82f4865d222a7ae06f250cf9f/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "models/9203bb8f5df15cffaa29f5315a722835/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "models/b14e3a8b56ddbb8d2d831e727774a168/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "models/ee0376c927044cdece056ba1d3e6eac7/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "roller/crouch/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "roller/spin/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "roller/standup/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    },
+    {
+      "model": "roller/swizzle/policy.onnx",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\"actions\":14,\"input\":\"obs\",\"observations\":61,\"valid\":true}"
+    }
+  ]
+}

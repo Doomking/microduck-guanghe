@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "oneReadPerConnection": true,
+  "noPeriodicRequests": true,
+  "noRetryLoopOnUnknownCommand": true,
+  "oneReadAfterManualReorder": true,
+  "ordinaryOperationsDoNotReadOrder": true,
+  "reconnectRefreshesOnce": true,
+  "greaterThanTenGatePreserved": true,
+  "actualOrderDisplayed": true,
+  "greenSuccessConfirmation": true,
+  "packetWarningsOnlyOnCards": true,
+  "verboseExplanationRemoved": true,
+  "physicalHardwareTested": false
+}

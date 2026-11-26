@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "originalV302PanelMounted": true,
+  "strictGreaterThan10": true,
+  "oneMoveRequest": true,
+  "actualOrderDisplayed": true,
+  "imuFixedFirst": true,
+  "commonCompactFeedback": true,
+  "offlineReplayDisabled": true,
+  "browserPixelsTested": false,
+  "physicalHardwareTested": false
+}

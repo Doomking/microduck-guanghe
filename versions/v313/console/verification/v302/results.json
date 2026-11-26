@@ -1,0 +1,214 @@
+{
+  "passed": true,
+  "release": "V302 Beta / control.102 console-only",
+  "console102_compatibility": {
+    "passed": true,
+    "tests": 5,
+    "native_firmware_sha256": "d301e5e942eae36cb38e76729cdc97c1834ddacab23b10afea6d761b530ef20d",
+    "hardware_tested": false,
+    "scope": "exact control102 payload, separate maintenance sidecar, legacy web input"
+  },
+  "maintenance": {
+    "passed": true,
+    "tests": 20,
+    "simulated_before_after": {},
+    "timing_model": "8 ms per silent address; 0.2 ms per UART operation; 2 ms duplicate-reply collection; actual fixed sleeps. SSH, service process costs and calibration disk persistence excluded.",
+    "real_pipe_subprocesses_tested": true,
+    "real_ssh_or_uart_tested": false,
+    "physical_latency_ms": null,
+    "one_ms_claim": false,
+    "passed_tests": 19,
+    "skipped": 1
+  },
+  "workspace": {
+    "passed": true,
+    "tests": 7,
+    "physical_hardware_tested": false
+  },
+  "existing_service_switch": {
+    "passed": true,
+    "cases": 14,
+    "source_sha256": {
+      "mode_switch_observer.py": "0182985aa6aa46b5a09e1e23cc5d1d2e11821053a5acf508d0cd0f248302881b",
+      "service_control.py": "ddbd3cc4e737ebe55395daf8411fad984592c7db71d17f25eb93176c6f752d2f",
+      "workspace_control.py": "e4ce8ad204a11a4b5a73748317aa98fd9e512e3e156a843e9e8b850d03fe0c2d"
+    },
+    "boundary": "V297: real child-process/lock handling and production transport/controller.\n\nNo real service, SSH, UART, servo, IMU or motion is used.\n"
+  },
+  "lifecycle": {
+    "passed": true,
+    "cases": [
+      "ordinary focus and hide/show keep actual constructor state, drafts, DOM and existing position reader without requests or card writes",
+      "existing normal maintenance poll continues after focus without an additional loop or configuration refresh",
+      "hidden legitimate swap and IMU observations retain their actual reader eligibility while new hidden writes remain guarded",
+      "real failed position and IMU readers stay latched through ordinary focus and visibility changes without reconnects",
+      "actual pagehide keeps displayed state and drafts but invalidates freshness, and real pageshow restores one read loop without reentering or scanning",
+      "a pageshow on an already running page performs no maintenance refresh or view reset",
+      "actual APP registrations do not refresh config or recreate a healthy observer on ordinary focus visibility or initial pageshow",
+      "actual APP restores only its own unloaded cached-page observer once, and never retries a genuinely failed observer",
+      "a genuine cached-page restore initially hidden completes only its own paused observation when visible, without touching healthy or failed readers",
+      "actual scan click ACK progress and completion leave all four mode-card DOM attributes and copy unchanged",
+      "real accepted mode transitions update navigation while local center and swap locks remain enforced only at action dispatch",
+      "real switch failure unlocks all mode cards and displays one readable internal dialog without retrying or replacing the selected servo",
+      "uncalibrated motion click already in calibration displays one Chinese internal error after the real unchanged API reply instead of clearing it",
+      "a fallback that must start calibration explains the original motion rejection without claiming success or submitting a second operation",
+      "a pre-V294 backend target-only redirect still produces a readable rejection",
+      "already selected numbering explains why motion was not entered without a scan, native request or page reload",
+      "entering numbering as the prerequisite keeps one explicit entry and one rejection of the original motion click",
+      "valid new motion entry and opening an already running motion page remain successful without spurious calibration errors",
+      "V297 completed management with explicit IMU wait unlocks real menu dispatch into both bench modes without waiting for hardware readiness",
+      "V297 no ready feedback does not bypass an actually running service action or enable motion inputs",
+      "V297 missing IMU, one servo and several servos retain Chinese identifiers and exact original startup errors"
+    ],
+    "source_sha256": {
+      "static/app.js": "420c287ab5155a4e920d269ace749a726a805b070723236f86ca13a84008c8dd",
+      "static/four-pages.js": "f59db7c97ab45376dce6f57090dffa5fa16f42824980feb6df7a2688de3c208c",
+      "static/four-pages.css": "6df41cd9c6c40b55c1110986b912b6dbd33a857361a5b5ff83c608ae8c4bf5d5",
+      "static/numbering-position-stream.js": "a11e759333b833b5481850d768b238b81f05bf1098ede585b5bba46d533b9dfe"
+    },
+    "test_sha256": "500f42b2bd566c6cc12b2728ffe88dc2565dce69157bf8c4091cbb16fb7a370f",
+    "style_review": "A stable joint wrapper separates feedback/curve sizing from AI. Existing controlled tests cover navigation, request feedback and lifecycle; CSS is source-reviewed, with no browser pixels or computed geometry claimed.",
+    "boundary": "Actual shipped constructor registrations, action/scan/maintenance/stream eligibility methods and APP lifecycle callbacks run with controlled DOM/API/timers/observer factory. Ordinary focus/visibility perform no refresh or reader restart; existing periodic reads remain. Actual pagehide cleanup and explicit hardware/input blur safety paths remain separate. No browser-engine BFCache, real WS/SSE transport, SSH/UART, 3D pixels or hardware acceptance."
+  },
+  "model_views": {
+    "passed": true,
+    "referenceViews": [
+      "calibration:zero",
+      "calibration:home",
+      "robot:zero",
+      "robot:home",
+      "calibration:zero",
+      "calibration:home",
+      "robot:zero",
+      "robot:home"
+    ],
+    "actualAppRender": true,
+    "actualModelTransforms": true,
+    "referenceWrites": 0,
+    "measuredUpdatesRetained": true,
+    "markerCases": 16,
+    "cameraChecks": [
+      "front",
+      "back",
+      "left",
+      "side",
+      "top"
+    ],
+    "separateFooterLegend": true,
+    "duplicateIds": false,
+    "browserPixelsTested": false,
+    "webglPixelsTested": false,
+    "limitation": "DOM/CSS, actual model CPU transforms, telemetry rendering and marker placement verified. Browser and WebGL pixels were not tested in this run."
+  },
+  "imu_layout": {
+    "passed": true,
+    "modeTransitions": 16,
+    "checks": [
+      {
+        "pass": 0,
+        "mode": "calibration",
+        "imuParent": "calibration-joint-observation",
+        "curveParent": "calibration-joint-observation"
+      },
+      {
+        "pass": 0,
+        "mode": "robot",
+        "imuParent": "robot-joint-curve",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 0,
+        "mode": "hardware",
+        "imuParent": "board-test-grid",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 0,
+        "mode": "numbering",
+        "imuParent": "robot-joint-curve",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 1,
+        "mode": "calibration",
+        "imuParent": "calibration-joint-observation",
+        "curveParent": "calibration-joint-observation"
+      },
+      {
+        "pass": 1,
+        "mode": "robot",
+        "imuParent": "robot-joint-curve",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 1,
+        "mode": "hardware",
+        "imuParent": "board-test-grid",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 1,
+        "mode": "numbering",
+        "imuParent": "robot-joint-curve",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 2,
+        "mode": "calibration",
+        "imuParent": "calibration-joint-observation",
+        "curveParent": "calibration-joint-observation"
+      },
+      {
+        "pass": 2,
+        "mode": "robot",
+        "imuParent": "robot-joint-curve",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 2,
+        "mode": "hardware",
+        "imuParent": "board-test-grid",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 2,
+        "mode": "numbering",
+        "imuParent": "robot-joint-curve",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 3,
+        "mode": "calibration",
+        "imuParent": "calibration-joint-observation",
+        "curveParent": "calibration-joint-observation"
+      },
+      {
+        "pass": 3,
+        "mode": "robot",
+        "imuParent": "robot-joint-curve",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 3,
+        "mode": "hardware",
+        "imuParent": "board-test-grid",
+        "curveParent": "robot-joint-curve"
+      },
+      {
+        "pass": 3,
+        "mode": "numbering",
+        "imuParent": "robot-joint-curve",
+        "curveParent": "robot-joint-curve"
+      }
+    ],
+    "liveComponentsReused": true,
+    "duplicateIds": false,
+    "serviceTelemetrySourceUnchanged": true,
+    "hardwareButtonsPreserved": true,
+    "cssTwoColumns": true,
+    "pixelLayoutTested": false,
+    "pixelTestLimit": "Local Chromium launch was blocked by workspace UNIX socket restrictions."
+  },
+  "physical_hardware_tested": false,
+  "native_upgrade_required": false
+}

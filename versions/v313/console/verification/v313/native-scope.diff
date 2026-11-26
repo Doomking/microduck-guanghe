@@ -1,0 +1,29 @@
+--- control.126/robotd/src/communication_stats.rs
++++ control.127/robotd/src/communication_stats.rs
+@@ -11,6 +11,7 @@
+     pub consecutive_timeout: u64,
+     pub last_missing_read: Option<u64>,
+     pub last_timeout_read: Option<u64>,
++    pub last_timeout_elapsed_us: Option<u64>,
+ }
+ 
+ #[derive(Clone, Serialize)]
+@@ -79,6 +80,7 @@
+                     counts.consecutive_timeout = counts.consecutive_timeout.saturating_add(1);
+                     counts.consecutive_missing = 0;
+                     counts.last_timeout_read = Some(self.total_reads);
++                    counts.last_timeout_elapsed_us = Some(trace.elapsed_us);
+                 } else {
+                     counts.missing = counts.missing.saturating_add(1);
+                     counts.consecutive_missing = counts.consecutive_missing.saturating_add(1);
+--- control.126/robotd/src/feetech_commissioning.rs
++++ control.127/robotd/src/feetech_commissioning.rs
+@@ -19,7 +19,7 @@
+ use tokio::io::{AsyncBufReadExt, AsyncWriteExt, BufReader};
+ use tokio::sync::oneshot;
+ 
+-pub const BUILD: &str = "1fa843-feetech-ft6-control.126";
++pub const BUILD: &str = "1fa843-feetech-ft6-control.127";
+ const MAX_PENDING: usize = 16;
+ const POSITION_TOLERANCE: u16 = 8;
+ const SETTLE_TIMEOUT: Duration = Duration::from_secs(4);
