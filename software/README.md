@@ -1,8 +1,29 @@
-# software · 软件适配
+# software · 软件
 
 > 本目录保留训练所需的上游仿真模型，**不是最新实物结构件的打印来源**。模型下载统一到 [microduck-replica-cad](https://github.com/fanhao375/microduck-replica-cad)；引入飞特舵机参数不等于已更新 CAD 几何、质量和惯量。
 
-官方运行时 [`pollen-robotics/microduck`](https://github.com/pollen-robotics/microduck) 是照 Dynamixel XL330 写的，本仓库主线用飞特 HD-1910，软件要改。这个目录放**训练工程、分析和方案**；Rust 运行时适配代码仍在下方所列的 fork 分支里。
+官方运行时 [`pollen-robotics/microduck`](https://github.com/pollen-robotics/microduck) 是照 Dynamixel XL330 写的，本仓库主线用飞特 HD-1910，所以主程序要改。
+
+## 现在用的软件一览
+
+| 软件 | 干什么 | 在哪、怎么用 | 许可 |
+|---|---|---|---|
+| **复刻镜像** | 烧卡开机就能用的整套系统：主程序、模型、Studio、首次开机和配网 | [`image/`](image/)：用户看[烧录和第一次使用](image/烧录和第一次使用.md)，做镜像的人看 [image/README.md](image/README.md)。已发布版本见 [Releases](https://github.com/fanhao375/microduck-replica/releases/latest) | 构建脚本 Apache-2.0；镜像里各部分的许可见镜像内 `/usr/share/doc/microduck/` |
+| **Microduck Studio** | 装在鸭子上的网页中控：状态、卸力、舵机零位、IMU 方向、写进主程序、手柄、遥控、日志 | [`studio/`](studio/)。用复刻镜像的不用另装 | 代码 Apache-2.0 |
+| **网页软件更新** | 签名组件包、独立更新服务、离线上传、安装与回退 | [`updater/`](updater/)，20261027镜像预装；旧卡先一次性SSH引导，[操作说明](../docs/软件更新与语音使用说明-20261027.md) | Apache-2.0 |
+| **本地坐站语音** | R3单击监听开关、中文坐下/站起来、鸭叫提示 | [`duck-echo/`](duck-echo/)，20261027镜像附中文模型与ARM64依赖；无需云端Key | 代码Apache-2.0，模型与依赖按各自许可 |
+| **主程序 robotd / padd / mediad** | 在官方 0.15.1 上加了飞特 HD-1910 舵机总线、I²C IMU 模块、陀螺融合、UDP 手柄 | 复刻镜像里已经装好。各版本构建、提交号和下载见 [镜像说明](image/README.md)及[公开发布页](https://github.com/fanhao375/microduck-replica/releases) | Apache-2.0 |
+| **走路和动作模型** | 走路、坐下 / 站起、低头捡、前滚翻、左右踢、轮滑 4 个 | 复刻镜像里带着。每个模型干什么、对应哪个手柄键、谁训练的，见[模型说明](image/overlay/usr/share/doc/microduck/模型说明.txt) | 作者的个人非商业许可，**不是开源许可**：不得随收费产品分发 |
+| **训练工程** | HD-1910 仿真训练 | [`training/`](training/) | 代码 Apache-2.0，3D 网格 CC BY-NC-SA |
+| **Microduck Training Studio** | 电脑上的网页训练工作台：实验管理、曲线、评估与模型导出 | [`training-studio/`](training-studio/README.md)，与鸭子上的 Studio 分开运行 | 代码 Apache-2.0；依赖与素材许可见该目录说明 |
+| **动作广场**（预览版） | 动作库网站：每个动作的仿真预览、分解图、关节曲线，标清来源和验证到哪一步；还没练成的列在「还在路上的」 | [在线看](https://fanhao375.github.io/microduck-replica/motion-plaza/)；网页放在 [`docs/motion-plaza/`](../docs/motion-plaza/README.md)，拿到本地双击 `index.html` 也能看。在 Studio 里一键安装动作还没做 | 代码 Apache-2.0；预览图和视频 CC BY-NC-SA；收录的第三方模型按各自许可 |
+| servo-web（旧） | 9 月的网页舵机调试台，Studio 出来以前用 | [`tools/servo-web/`](../tools/servo-web/) | Apache-2.0 |
+
+独立的舵机测试、IMU 检查和步态分析入口见[工具导航](../tools/README.md)；电路板与固件入口见[硬件工程](../hardware/README.md)。
+
+## Orange Pi Zero 3W 移植
+
+[香橙派 Zero 3W（Allwinner A733）](orangepi-zero3w/)有独立的 R2 预览镜像，预装 Studio、只读主控和热点配网。使用这款板子请看[烧录、首次设密修正与配网](orangepi-zero3w/image/README.md)。贡献者已在 ARM64 环境验证 Studio，A733 实板烧卡首启和运动待验。
 
 ## HD1910 仿真训练
 
@@ -19,11 +40,11 @@ STM32G031 + LSM6DSV16X 固件与硬件资料放在 [`hardware/imu_to_dxl/firmwar
 
 **范围：固件与模拟验证、SWD 台架观察。** 附带 0.2.0 源码已实现飞特 SCS/STS 协议、ID 200、地址 56 的 15 字节块及同步读排队；主机测试与模拟总线验收记录见 [`VALIDATION.md`](../hardware/imu_to_dxl/firmware/VALIDATION.md)。实板已有烧录及 IMU 观察记录，但真实混合总线、响应/释放时序和整机运行时验收仍未完成。此前“仍是 Dynamixel 基线、尚未实现契约”的说明已过时，不能与“真总线尚未验收”混为一谈。
 
-## Rust 运行时代码在哪
+## 历史：9 月的第一版飞特后端（已不用）
 
-> ### 👉 [`fanhao375/microduck` · `feetech` 分支](https://github.com/fanhao375/microduck/tree/feetech)
+> 现在用的主程序是上面一览表里的 fork。下面是 9 月基于官方 0.14.1 写的第一版飞特后端，没上过板，留作参考。
 >
-> 已跟上官方 **0.14.1**，三个 crate 的测试全过（duck-control 80 / robotd-params 151 / robotd 93）。**还没上过板**，等零位校准。
+> [`fanhao375/microduck` · `feetech` 分支](https://github.com/fanhao375/microduck/tree/feetech)：已跟上官方 **0.14.1**，三个 crate 的测试全过（duck-control 80 / robotd-params 151 / robotd 93）。
 
 | 文件 | 行数 | 做了什么 |
 |---|---|---|
