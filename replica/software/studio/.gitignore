@@ -1,0 +1,8 @@
+docs/20261019-额度续写记录.md
+logs/
+logs-dev/
+state/
+state-dev/
+_testlogs/
+__pycache__/
+tts-settings.json
