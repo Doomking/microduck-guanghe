@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "mode": "hardware",
+      "image": "/assets/tutorials/hardware-wiring-white-v268.png"
+    },
+    {
+      "mode": "numbering",
+      "image": "/assets/tutorials/numbering-wiring-white-v268.png"
+    }
+  ],
+  "connectionFailureImage": true,
+  "otherErrorsRemainTextOnly": true,
+  "offlineOperationRequests": 0,
+  "browserPixelsTested": false
+}

@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "modeTransitions": 16,
+  "checks": [
+    {
+      "pass": 0,
+      "mode": "calibration",
+      "imuParent": "calibration-joint-observation",
+      "curveParent": "calibration-joint-observation"
+    },
+    {
+      "pass": 0,
+      "mode": "robot",
+      "imuParent": "robot-joint-curve",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 0,
+      "mode": "hardware",
+      "imuParent": "board-test-grid",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 0,
+      "mode": "numbering",
+      "imuParent": "robot-joint-curve",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 1,
+      "mode": "calibration",
+      "imuParent": "calibration-joint-observation",
+      "curveParent": "calibration-joint-observation"
+    },
+    {
+      "pass": 1,
+      "mode": "robot",
+      "imuParent": "robot-joint-curve",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 1,
+      "mode": "hardware",
+      "imuParent": "board-test-grid",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 1,
+      "mode": "numbering",
+      "imuParent": "robot-joint-curve",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 2,
+      "mode": "calibration",
+      "imuParent": "calibration-joint-observation",
+      "curveParent": "calibration-joint-observation"
+    },
+    {
+      "pass": 2,
+      "mode": "robot",
+      "imuParent": "robot-joint-curve",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 2,
+      "mode": "hardware",
+      "imuParent": "board-test-grid",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 2,
+      "mode": "numbering",
+      "imuParent": "robot-joint-curve",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 3,
+      "mode": "calibration",
+      "imuParent": "calibration-joint-observation",
+      "curveParent": "calibration-joint-observation"
+    },
+    {
+      "pass": 3,
+      "mode": "robot",
+      "imuParent": "robot-joint-curve",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 3,
+      "mode": "hardware",
+      "imuParent": "board-test-grid",
+      "curveParent": "robot-joint-curve"
+    },
+    {
+      "pass": 3,
+      "mode": "numbering",
+      "imuParent": "robot-joint-curve",
+      "curveParent": "robot-joint-curve"
+    }
+  ],
+  "liveComponentsReused": true,
+  "duplicateIds": false,
+  "serviceTelemetrySourceUnchanged": true,
+  "hardwareButtonsPreserved": true,
+  "cssTwoColumns": true,
+  "pixelLayoutTested": false,
+  "pixelTestLimit": "Local Chromium launch was blocked by workspace UNIX socket restrictions."
+}

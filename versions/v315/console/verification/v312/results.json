@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "production_changes": [
+    "static/read-order-control.js",
+    "static/inspection.js",
+    "static/service.js",
+    "service_control.py"
+  ],
+  "firmware_archive_byte_identical": true,
+  "native_source_archive_byte_identical": true,
+  "maintenance_bundle_byte_identical": true,
+  "numbering_midpoint_positions_byte_identical": true,
+  "physical_hardware_tested": false,
+  "request_and_ui_results": {
+    "passed": true,
+    "oneReadPerConnection": true,
+    "noPeriodicRequests": true,
+    "noRetryLoopOnUnknownCommand": true,
+    "oneReadAfterManualReorder": true,
+    "ordinaryOperationsDoNotReadOrder": true,
+    "reconnectRefreshesOnce": true,
+    "greaterThanTenGatePreserved": true,
+    "actualOrderDisplayed": true,
+    "greenSuccessConfirmation": true,
+    "packetWarningsOnlyOnCards": true,
+    "verboseExplanationRemoved": true,
+    "physicalHardwareTested": false
+  }
+}

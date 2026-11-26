@@ -31,3 +31,11 @@
 ## 声明
 
 个人学习/爱好项目，非官方发布，不提供任何形式的担保。官方发布与商用授权请联系上游作者。
+
+## 版本源码导入（2026-11-26）
+
+- `versions/v313/`、`versions/v315/` 已导入上游官方 Release ZIP 的完整包内源码（`console/` + `firmware/`），ZIP SHA256 与官方 API digest 核对一致；溯源、布局与关键身份见各目录 `IMPORT-NOTES.md`。
+- 两代共用 control.127 固件包（`Microduck-Robotd-FT6-R17.tar.gz`，sha256 `42cd56d5…`）与同一份原生源码归档（sha256 `b3818b78…`）；V315 相对 V313 仅中控更新。
+- 手柄桥 C 源码不在原生源码归档里，而在固件包内 `gamepad-r7/gamesir-xboxd.c`；P4 移植以该文件为基线，对照本仓库 `microduck-hd1910/firmware/gamepad-r7/gamesir-xboxd.c`（已打补丁的 43 代）。
+- V297/V302 为过渡 Beta（固件复用 control.102，源码已在 git `versions/v260`），未导入，按上游 README 从 Release ZIP 获取。
+- 导入内容为上游官方原版，未含手柄补丁；main 工作树（control.43 + 补丁）不受影响。

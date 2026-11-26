@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "cases": 14,
+  "source_sha256": {
+    "mode_switch_observer.py": "0182985aa6aa46b5a09e1e23cc5d1d2e11821053a5acf508d0cd0f248302881b",
+    "service_control.py": "ddbd3cc4e737ebe55395daf8411fad984592c7db71d17f25eb93176c6f752d2f",
+    "workspace_control.py": "e4ce8ad204a11a4b5a73748317aa98fd9e512e3e156a843e9e8b850d03fe0c2d"
+  },
+  "boundary": "V297: real child-process/lock handling and production transport/controller.\n\nNo real service, SSH, UART, servo, IMU or motion is used.\n"
+}

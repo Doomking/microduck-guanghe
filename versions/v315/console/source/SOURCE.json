@@ -1,0 +1,47 @@
+{
+  "console_version": "1.0.315",
+  "native_build": "1fa843-feetech-ft6-control.127",
+  "baseline_console": "V302",
+  "baseline_native_build": "1fa843-feetech-ft6-control.102",
+  "baseline_zip_sha256": "dfa042e3ff738c158b25e7cde203a086502aa6c29897ccb7a135cf27e2fab070",
+  "source_commit": "318bb3c13830c3d52ee3c706defac1443b69aff6",
+  "native_recompiled": false,
+  "native_instructions_changed": false,
+  "changed_binaries": [
+    "robotd"
+  ],
+  "source_changes": [],
+  "console_changes": [
+    "maintenance_worker.py",
+    "maintenance_positions.py",
+    "maintenance_components.py",
+    "static/numbering-position-stream.js"
+  ],
+  "other_native_binaries_byte_identical": true,
+  "native_models_changed": false,
+  "native_upgrade_required_from_control102": true,
+  "maintenance_component_archive": "updates/Microduck-Maintenance-V315.tar.gz",
+  "maintenance_component_sha256": "4ebf425e5343bddf4db478553bcef2439aca2e34702f139a13d2bc92e9367698",
+  "maintenance_worker_sha256": "af4cac9c493ee53e3deddf68398a47bae50fcbd1771dac10112b20f56c9d16dc",
+  "before_sha256": "8299cfa8fd3d2a758c9c042703ceceba208f36d134948e45df6baf0b75147153",
+  "after_sha256": "2ef36b50ad9cf6795ff0e748ffa6010fb850aec8fd4049c089b0373e63601de5",
+  "hardware_verified": false,
+  "previous_console": "1.0.312",
+  "previous_native_build": "1fa843-feetech-ft6-control.126",
+  "native_source_unchanged": true,
+  "firmware_payload_unchanged": true,
+  "generated_at_utc": "2026-11-23T18:09:59.623444+00:00",
+  "target": "aarch64-unknown-linux-gnu.2.31",
+  "scope": "One per-device timeout elapsed field and release identity; serial reading, decoding and maintenance logic unchanged.",
+  "source_repository": "kissqy/Microduck-kissqy",
+  "source_subdirectory": "versions/v260/firmware",
+  "toolchain": "Rust 1.99.0 / cargo-zigbuild 0.23.4 / Zig 0.15.1",
+  "source_archive": "Microduck-Native-Build-Source-V313.tar.gz",
+  "source_archive_sha256": "b3818b7857760ed0b3b6266d913f42c8141ac22d1faa0f79fe03633384c274e6",
+  "console_source": "Python and JavaScript included in this package",
+  "current_console_scope": "Full feedback register range and per-device position failure isolation. Reuse exact control.127 firmware and native build source archive.",
+  "zero_logic_changes": [
+    "maintenance_worker.py"
+  ],
+  "maintenance_component_id": "da3e93589ff81402e617fbd49936f7a0ede6c06cb5d481370eee182fb7b71c2c"
+}

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "tests": 20,
+  "simulated_before_after": {},
+  "timing_model": "8 ms per silent address; 0.2 ms per UART operation; 2 ms duplicate-reply collection; actual fixed sleeps. SSH, service process costs and calibration disk persistence excluded.",
+  "real_pipe_subprocesses_tested": true,
+  "real_ssh_or_uart_tested": false,
+  "physical_latency_ms": null,
+  "one_ms_claim": false,
+  "passed_tests": 19,
+  "skipped": 1
+}

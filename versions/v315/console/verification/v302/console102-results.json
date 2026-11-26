@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "tests": 5,
+  "native_firmware_sha256": "d301e5e942eae36cb38e76729cdc97c1834ddacab23b10afea6d761b530ef20d",
+  "hardware_tested": false,
+  "scope": "exact control102 payload, separate maintenance sidecar, legacy web input"
+}

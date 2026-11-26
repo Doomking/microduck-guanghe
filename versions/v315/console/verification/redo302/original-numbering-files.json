@@ -1,0 +1,9 @@
+{
+  "maintenance_worker.py": "5abd5633f6112f3709b7808417427d023daffc9bde4c35beac2f9c8973b11bee",
+  "maintenance_components.py": "120e14c0a8bb74cc8264245774bedb3e2ee7514a51a97c5466b3b4d9ca69c56a",
+  "maintenance_control.py": "619071ac83b33bff51b9201e9605430fd590388b5ed9eb933a6284fc75b92f9b",
+  "maintenance_positions.py": "63ae4df3477018a6da93a3ddfe8ea9207e4893b6237664317e802ed5460a9812",
+  "workspace_control.py": "e4ce8ad204a11a4b5a73748317aa98fd9e512e3e156a843e9e8b850d03fe0c2d",
+  "static/four-pages.js": "f59db7c97ab45376dce6f57090dffa5fa16f42824980feb6df7a2688de3c208c",
+  "updates/Microduck-Maintenance-V302.tar.gz": "55076ed3be2a66b00353512e292cfe7552761e6b9bd1eaa8f7ce499877088724"
+}

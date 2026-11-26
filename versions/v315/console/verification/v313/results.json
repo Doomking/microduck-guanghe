@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "native_stats_tests": 5,
+  "ui": {
+    "passed": true,
+    "oneReadPerConnection": true,
+    "noPeriodicRequests": true,
+    "noRetryLoopOnUnknownCommand": true,
+    "oneReadAfterManualReorder": true,
+    "ordinaryOperationsDoNotReadOrder": true,
+    "reconnectRefreshesOnce": true,
+    "greaterThanTenGatePreserved": true,
+    "actualOrderDisplayed": true,
+    "greenSuccessConfirmation": true,
+    "packetWarningsOnlyOnCards": true,
+    "verboseExplanationRemoved": true,
+    "perDeviceHistoricalMs": true,
+    "freshReadDoesNotOverwriteTimeoutMs": true,
+    "physicalHardwareTested": false
+  },
+  "duration_retained_per_device": true,
+  "serial_reading_unchanged": true,
+  "numbering_midpoint_positions_unchanged": true,
+  "physical_hardware_tested": false
+}

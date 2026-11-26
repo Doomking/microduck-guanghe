@@ -1,0 +1,209 @@
+{
+  "build": "1fa843-feetech-ft6-control.126",
+  "device_communication": {
+    "by_id": {
+      "10": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 13,
+        "last_missing_read": null,
+        "last_timeout_read": 13,
+        "missing": 0,
+        "timeout": 13
+      },
+      "11": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "12": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 13,
+        "last_missing_read": null,
+        "last_timeout_read": 13,
+        "missing": 0,
+        "timeout": 13
+      },
+      "13": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "14": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "20": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "200": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "21": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "22": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "23": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "24": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "30": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "31": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "32": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "33": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      },
+      "34": {
+        "consecutive_missing": 0,
+        "consecutive_timeout": 0,
+        "last_missing_read": null,
+        "last_timeout_read": null,
+        "missing": 0,
+        "timeout": 0
+      }
+    },
+    "classification": "exclusive-v2",
+    "complete_but_late": 0,
+    "incomplete_timeout_reads": 13,
+    "last_trace": {
+      "address": 56,
+      "bad_checksums": 0,
+      "complete_but_late": false,
+      "deadline_exceeded": true,
+      "discarded": 0,
+      "elapsed_us": 20080,
+      "length": 15,
+      "missing_ids": [
+        10,
+        12
+      ],
+      "partial_received": false,
+      "request_sent": true,
+      "rx_bytes": 294
+    },
+    "missing_reads": 0,
+    "session": "6-1795455484691464929",
+    "total_reads": 13,
+    "unsent_reads": 0
+  },
+  "mode": "commissioning",
+  "read_order": {
+    "address": 56,
+    "applied": [
+      200,
+      20,
+      21,
+      22,
+      23,
+      24,
+      30,
+      31,
+      32,
+      33,
+      34,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "applied_revision": 0,
+    "baud": 1000000,
+    "deadline_us": 20000,
+    "desired": [
+      200,
+      20,
+      21,
+      22,
+      23,
+      24,
+      30,
+      31,
+      32,
+      33,
+      34,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "instruction": 130,
+    "length": 15,
+    "pending": false,
+    "persistence": "robot_config",
+    "revision": 0,
+    "saved_revision": null,
+    "schema": "feetech-read-order/v1",
+    "storage_error": null
+  }
+}

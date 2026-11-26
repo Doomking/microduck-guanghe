@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "referenceViews": [
+    "calibration:zero",
+    "calibration:home",
+    "robot:zero",
+    "robot:home",
+    "calibration:zero",
+    "calibration:home",
+    "robot:zero",
+    "robot:home"
+  ],
+  "actualAppRender": true,
+  "actualModelTransforms": true,
+  "referenceWrites": 0,
+  "measuredUpdatesRetained": true,
+  "markerCases": 16,
+  "cameraChecks": [
+    "front",
+    "back",
+    "left",
+    "side",
+    "top"
+  ],
+  "separateFooterLegend": true,
+  "duplicateIds": false,
+  "browserPixelsTested": false,
+  "webglPixelsTested": false,
+  "limitation": "DOM/CSS, actual model CPU transforms, telemetry rendering and marker placement verified. Browser and WebGL pixels were not tested in this run."
+}

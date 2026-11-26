@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "tests": 5,
+  "full_register_positions": true,
+  "per_device_failure_isolation": true,
+  "automatic_recovery_without_rescan": true,
+  "single_selected_center_command": true,
+  "actual_pty_packets": true,
+  "physical_hardware_tested": false,
+  "old_range_failure_reproduced": true,
+  "old_global_block_reproduced": true,
+  "browser_stream_full_register_passed": true
+}
