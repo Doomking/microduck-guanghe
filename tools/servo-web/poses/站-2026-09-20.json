@@ -5,92 +5,92 @@
   {
    "id": 20,
    "joint": "left_hip_yaw",
-   "pos": 2197,
-   "deg": 13.1
+   "pos": 2661,
+   "deg": 53.9
   },
   {
    "id": 21,
    "joint": "left_hip_roll",
-   "pos": 1977,
-   "deg": -6.2
+   "pos": 1972,
+   "deg": -6.7
   },
   {
    "id": 22,
    "joint": "left_hip_pitch",
-   "pos": 1920,
-   "deg": -11.2
+   "pos": 1875,
+   "deg": -15.2
   },
   {
    "id": 23,
    "joint": "left_knee",
-   "pos": 1847,
-   "deg": -17.7
+   "pos": 1874,
+   "deg": -15.3
   },
   {
    "id": 24,
    "joint": "left_ankle",
-   "pos": 1857,
-   "deg": -16.8
+   "pos": 1951,
+   "deg": -8.5
   },
   {
    "id": 30,
    "joint": "neck_pitch",
-   "pos": 608,
-   "deg": -126.6
+   "pos": 657,
+   "deg": -122.3
   },
   {
    "id": 31,
    "joint": "head_pitch",
-   "pos": 1779,
-   "deg": -23.6
+   "pos": 1838,
+   "deg": -18.5
   },
   {
    "id": 32,
    "joint": "head_yaw",
-   "pos": 2049,
-   "deg": 0.1
+   "pos": 2062,
+   "deg": 1.2
   },
   {
    "id": 33,
    "joint": "head_roll",
-   "pos": 2043,
-   "deg": -0.4
+   "pos": 1674,
+   "deg": -32.9
   },
   {
    "id": 34,
    "joint": "mouth",
-   "pos": 2047,
-   "deg": -0.1
+   "pos": 2040,
+   "deg": -0.7
   },
   {
    "id": 10,
    "joint": "right_hip_yaw",
-   "pos": 1954,
-   "deg": -8.3
+   "pos": 2635,
+   "deg": 51.6
   },
   {
    "id": 11,
    "joint": "right_hip_roll",
-   "pos": 2102,
-   "deg": 4.7
+   "pos": 1628,
+   "deg": -36.9
   },
   {
    "id": 12,
    "joint": "right_hip_pitch",
-   "pos": 1854,
-   "deg": -17.1
+   "pos": 1756,
+   "deg": -25.7
   },
   {
    "id": 13,
    "joint": "right_knee",
-   "pos": 2058,
-   "deg": 0.9
+   "pos": 1612,
+   "deg": -38.3
   },
   {
    "id": 14,
    "joint": "right_ankle",
-   "pos": 2215,
-   "deg": 14.7
+   "pos": 3221,
+   "deg": 103.1
   }
  ]
 }

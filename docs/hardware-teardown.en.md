@@ -166,7 +166,7 @@ auto-detection flow. The device-tree overlay has to be applied by hand.
 |---|---|---|
 | `J13 / J14` | **TTL 3P** (JST EH 2.5 mm) | Microduck's XL330 servos use this |
 | `J3 / J11` | **RS-485 4P** (JST EH 2.5 mm) | driven by `U8 = SIT3088E` |
-| `TH1` | 100R thermistor | overcurrent protection |
+| `TH1` | 100R thermistor | in the **DATA line** (J13/J14 pin3); not power-path overcurrent protection |
 
 So the board drives **both TTL and RS-485 Dynamixels, and Feetech servos**, with a cable change.
 

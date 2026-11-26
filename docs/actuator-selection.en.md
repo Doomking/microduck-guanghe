@@ -49,8 +49,8 @@ sheet 4/6 `dynamixel.kicad_sch` spells it out:
 
 | Circuit | Actual connection |
 |---|---|
-| Dynamixel connectors J11 / J13 / J14 | Power pin ties to **`+BATT`** (raw battery), annotated `3A max`, through TH1 100R thermistor |
-| Between `+BATT` and the servos | **No regulation at all** — J13/J14 through a TH1 100R thermistor, J3/J11 direct.<br>(U10 LM5050-1 sits *after* the buck on the `+5V` rail, not at the battery input.) |
+| Dynamixel connectors J11 / J13 / J14 | Power pin ties to **`+BATT`** (raw battery), annotated `3A max`. TH1 100R thermistor is in the J13/J14 **DATA line (pin3)**, not in the power pin |
+| Between `+BATT` and the servos | **No regulation and no overcurrent protection** — J13/J14 and J3/J11 power pins both tie straight to `+BATT` (TH1 sits only in the J13/J14 data line).<br>(U10 LM5050-1 sits *after* the buck on the `+5V` rail, not at the battery input.) |
 | The only converter on the board | **U9 AP63205** + **L4 6.8 µH** (Fsw 1.1 MHz, 2 A) → outputs `+5V` |
 | Where `+5V` goes | The **Raspberry Pi 40-way header J4**, the PAM8406D audio amp, the EEPROM — the schematic even carries a Pi power table next to it (Pi 5: 9–10 W / Pi 4B: 6–7.6 W / Pi Zero 2W: 1.5 W) |
 

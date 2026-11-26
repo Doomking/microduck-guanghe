@@ -96,6 +96,7 @@ def examine(bus, sid):
 def report_md(rows, port, t):
     L = [f"# 舵机体检 {t}", "", f"串口 {port}，只读，没写任何寄存器。判据见 servo_report.py 开头。", ""]
     online = [r for r in rows if r["online"]]
+    online_full = [r for r in online if "unload" in r]
     reds = [r for r in rows if r["red"]]
     L.append(f"**在线 {len(online)}/{len(rows)} 颗；有红项的 {len(reds)} 颗**" + (f"：{' '.join(str(r['id']) for r in reds)}" if reds else ""))
     L += ["", "| ID | 关节 | 在线 | 卸载条件 19 | 状态 65 | 温度 | 电压 | 电流 | 读数 | 偏移 | 扭矩 | 固件 |",
@@ -103,6 +104,9 @@ def report_md(rows, port, t):
     for r in rows:
         if not r["online"]:
             L.append(f"| {r['id']} | {r['name']} | ✗ | | | | | | | | | |")
+            continue
+        if "unload" not in r:
+            L.append(f"| {r['id']} | {r['name']} | 🔴 ping 通但导出失败 | | | | | | | | | |")
             continue
         L.append(f"| {r['id']} | {r['name']} | ✓ | {r['unload']}（{bits_text(r['unload'])}） | {r['status']}（{bits_text(r['status'])}） "
                  f"| {r['temp_c']} °C | {r['volt']:.1f} V | {r['current_ma']} mA | {r['pos']} | {r['offset']:+d} "
@@ -114,7 +118,7 @@ def report_md(rows, port, t):
             L += [f"**#{r['id']} {r['name']}**", *items, ""]
     L += ["## 保护参数（在线的）", "", "| ID | 保护电流 | 过流保护时间 38 | 过载扭矩 | 保护时间 35 | 温度上限 | 最大扭矩 16 | 转矩限制 48 | 角度限位 |",
           "|---|---|---|---|---|---|---|---|---|"]
-    for r in online:
+    for r in online_full:
         L.append(f"| {r['id']} | {r['protect_ma']} mA | {r['overcurrent_raw']}（按 10 ms 算 {r['overcurrent_raw'] * 10} ms） | {r['overload_pct']} % "
                  f"| {r['protect_time_raw']}（按 10 ms 算 {r['protect_time_raw'] * 10} ms） "
                  f"| {r['temp_limit']} °C | {r['max_torque']} | {r['torque_limit']} | {r['angle_limit'][0]}–{r['angle_limit'][1]} |")
